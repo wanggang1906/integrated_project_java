@@ -1,0 +1,28 @@
+server:
+  port: 8091
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver #mysql5是jdbc，mysql6之后是cj.jdbc，本机是mysql8
+
+    #url: jdbc:mysql:jdbc:mysql://127.0.0.1:3306/resume-resolver?autoReconnect=true&useUnicode=true&characterEncoding=utf8&mysqlEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    #url: jdbc:mysql://127.0.0.1:3306/resume-resolver?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3306/resume-resolver?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+    #url: jdbc:mysql://127.0.0.1:3306/resume-resolver?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+  thymeleaf: # 是否启用模板缓存
+    cache: false
+    mode: LEGACYHTML5
+
+
+mybatis:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  type-aliases-package:
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+
+
+
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sys_manage.dao.UserInfoDao">
+
+
+
+    <!-- 根据用户名查询用户 -->
+    <select id="findAllUsers" parameterType="java.lang.String" resultType="sys_manage.modle.UserInfo">
+        select *
+        from user_info
+        where emp_id not in (select emp_id from group_user)
+        <if test="keyword!=null and keyword!=''">
+            and(`name` like CONCAT('%',#{keyword},'%') or `email` like CONCAT('%',#{keyword},'%')
+            or `tel` like CONCAT('%',#{keyword},'%'))
+        </if>
+
+    </select>
+
+    <select id="findUserByEmpId" parameterType="java.lang.String" resultType="sys_manage.modle.UserInfo">
+         select T1.emp_id,T1.name,T1.email,T2.`password`,T2.username,T1.type
+            from user_info T1, `user` T2
+            where T1.emp_id = T2.emp_id
+            and T1.emp_id = #{empId}
+    </select>
+    <select id="findUserInfoById" parameterType="java.lang.Long" resultType="sys_manage.modle.UserInfo">
+         select T1.emp_id,T1.name,T1.email,T2.`password`,T2.username,T1.type
+            from user_info T1, `user` T2
+            where T1.emp_id = T2.emp_id
+            and T2.id = #{id}
+    </select>
+
+</mapper>
