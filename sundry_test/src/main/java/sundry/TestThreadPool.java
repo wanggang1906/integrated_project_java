@@ -36,6 +36,9 @@ public class TestThreadPool {
 
         for (int i = 0; i < 10; i++) {
             Future<Integer>  future=pool.submit(new Callable<Integer>() {
+                // public interface Future<V>
+                // 表示异步计算的结果，提供检查计算是否完成的方法，以等待计算完成，并获取，检查计算结果
+                // 计算完成后只能用get获取结果，若有必要，可以阻塞此方法
                 public Integer call() throws Exception {
                     int sum=0;
                     for (int i = 0; i <=100; i++) {
